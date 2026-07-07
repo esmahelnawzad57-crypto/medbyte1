@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MedByte - پلاتفۆرمی فەرمی</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="liquid-mesh-container">
+    <div class="liquid-bubble bubble-blue"></div>
+    <div class="liquid-bubble bubble-purple"></div>
+    <div class="liquid-bubble bubble-green"></div>
+</div>
+
+<div id="command-palette" class="modal-overlay glass" style="display: none;">
+    <div class="command-box glass-inner">
+        <input type="text" id="command-search-input" placeholder="🔍 ناوی ئامرازەکە بنووسە یان بگەڕێ... (Ctrl + K)">
+        <div id="command-results-list" class="command-results"></div>
+    </div>
+</div>
+
+<div id="quick-scratchpad" class="scratchpad-panel glass" style="display: none;">
+    <div class="scratchpad-header">
+        <h4>📝 تێبینی کاتی خێرا</h4>
+        <button onclick="toggleScratchpad()" class="close-scratch-btn">✖</button>
+    </div>
+    <textarea id="scratchpad-text" placeholder="تێبینییەکەت لێرە بنووسە، خۆکار پاشەکەوت دەبێت..."></textarea>
+</div>
+
+    <div id="custom-alert" class="custom-alert glass">
+        <span class="alert-icon">⚠️</span>
+        <span id="alert-message" class="alert-message">تکایە خانەکان پڕبکەرەوە!</span>
+    </div>
+
+    <div class="animated-bg"></div>
+
+    <div id="main-homepage">
+        
+ <!-- بەشی سەرەوە و مینیوی سەرەکی پاش گۆڕینی لۆگۆ -->
+<header>
+    <button class="theme-toggle-btn" onclick="toggleTheme()">🌙 دۆخی تاریک</button>
+    
+    <!-- لۆگۆ نوێیەکە کە بە کلیک لێدانی دەگەڕێتەوە سەرەتا -->
+    <div class="logo-container" onclick="goToHome()">
+        <img src="image/MEDBYTE.png" alt="MedByte Logo" class="header-logo-img">
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="#ai-med-tools">زیرەکی دەستکرد</a></li>
+            <li><a href="#medtech-tools">پزیشکی و پەرستاری</a></li>
+            <li><a href="#design-lifestyle">دیزاین و ڕۆژانە</a></li>
+            <li><a href="#entertainment-tools">کاتبەسەربردن</a></li>
+        </ul>
+    </nav>
+</header>
+
+        <section class="hero">
+            <div class="hero-content glass">
+                <h1>بەخێربێیت بۆ پلاتفۆرمی <span class="neon-text">MedByte</span></h1>
+                <p>     </p>
+            </div>
+        </section>
+
+        <section id="ai-med-tools" class="container">
+            <h2 class="section-title">🤖 بەشی زیرەکی دەستکردی پزیشکی (AI Med-Tools)</h2>
+            <div class="grid">
+                
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                        <img src="image/drugs.webp" alt="AI Pill Info" class="project-icon">
+                    </div>
+                    <h3>ناسێنەری دەرمان (AI Pill Info)</h3>
+                    <p>وێنە یان ناوی حەبەکە بنووسە بۆ وەرگرتنی زانیاری لەسەر بەکارهێنان و کاریگەرییە لاوەکییەکانی.</p>
+                    <button class="btn" onclick="openApp('ai-pill-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                       <img src="image/lab raport.webp" alt="AI Lab Analyzer" class="project-icon">
+                    </div>
+                    <h3>شیکەرەوەی پشکنین (AI Lab Analyzer)</h3>
+                    <p>وێنە یان دەقی ئەنجامی پشکنینی خوێن و تاقیگە دابنێ بۆ وەرگرتنی شیکردنەوەیەکی سادە.</p>
+                    <button class="btn" onclick="openApp('ai-lab-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                        <img src="image/dktor.webp" alt="AI Lab Analyzer" class="project-icon">
+                    </div>
+                    <h3>خوێندنەوەی خەتی پزیشک (AI Rx-Decipher)</h3>
+                    <p>وێنەی ڕەچەتەی پزیشک دابنێ و بهێڵە زیرەکی دەستکرد هەوڵی خوێندنەوە و لێکدانەوەی بدات.</p>
+                    <button class="btn" onclick="openApp('ai-rx-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                       <img src="image/stethoscope-3d-icon-png-download-4833357.webp" alt="AI Symptom Checker" class="project-icon">
+                    </div>
+                    <h3>دۆزینەوەی نەخۆشی (AI Symptom Checker)</h3>
+                    <p>نیشانەکانی نەخۆشی بنووسە بۆ وەرگرتنی پێشنیار و ڕێنوێنی سەرەتایی ناپزیشکی.</p>
+                    <button class="btn" onclick="openApp('ai-symptom-app')">کردنەوەی ئەپ</button>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="medtech-tools" class="container">
+            <h2 class="section-title">🩺 ئامرازە پزیشکی و پەرستارییەکان (MedTech)</h2>
+            <div class="grid">
+
+              <div class="card glass">
+    <div class="card-img-wrapper">
+        <img src="pngtree-flame-icon-png-image_18970806.webp" alt="AI Pill Info" class="project-icon">
+    </div>
+    <h3>حاسیبەی سووتاوی (Rule of Nines)</h3>
+    <p>ناوچەکانی سووتاوی لەسەر جەستە دیاری بکە بۆ حیسابکردنی ڕێژەی سەدی گشتی (TBSA).</p>
+    <button class="btn" onclick="openApp('advanced-burn-app')">کردنەوەی ئەپ</button>
+</div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                        <img src="image/3d-intravenous-drip-isolated-object-with-high-quality-render-png.webp" alt="AI Pill Info" class="project-icon">
+                    </div>
+                    <h3>حاسیبەی شلەمەنی (Parkland Formula)</h3>
+                    <p>ئەژمارکردنی بڕی شلەمەنی IV پێویست بۆ نەخۆشی سووتاو لە ٢٤ کاتژمێری یەکەمدا.</p>
+                    <button class="btn" onclick="openApp('parkland-fluid-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                        <img src="image/3d-intravenous-drip-isolated-object-with-high-quality-render-png.webp" alt="AI Pill Info" class="project-icon">
+                    </div>
+                    <h3>خێرایی دڵۆپاندنی موغەزی (IV Flow Rate)</h3>
+                    <p>ئەژمارکردنی خێرایی دڵۆپینی دەرمان یان موغەزی (Drops/min) بەپێی کات و بڕ.</p>
+                    <button class="btn" onclick="openApp('iv-drip-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                     <img src="image/3d-illustration-write-documents-png.webp" alt="AI Lab Analyzer" class="project-icon">
+                    </div>
+                    <h3>فەرهەنگی کورتکراوە پزیشکییەکان</h3>
+                    <p>گەڕان لە کورتکراوە باوەکانی پزیشکی (PRN, STAT, NPO) و وەرگێڕانیان بۆ کوردی.</p>
+                    <button class="btn" onclick="openApp('med-abbrev-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                       <img src="image/terminology.webp" alt="AI Lab Analyzer" class="project-icon">
+                    </div>
+                    <h3>تێرمینۆلۆجی پزیشکی (Terminology)</h3>
+                    <p>کەرەستەیەکی فێرکاری بۆ شیکردنەوەی پێشگر و پاشگرە پزیشکییەکان (Prefix/Suffix).</p>
+                    <button class="btn" onclick="openApp('med-terminology-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                         <img src="image/neural-network-brain-3d-icon-png-download-11825900.webp" alt="AI Lab Analyzer" class="project-icon">
+                    </div>
+                    <h3>ئەناتۆمی دیجیتاڵی (Anatomy Explorer)</h3>
+                    <p>نەخشە و ناسێنەرێکی سادەی بەشەکانی جەستەی مرۆڤ تایبەت بۆ خوێندکاران.</p>
+                    <button class="btn" onclick="openApp('anatomy-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                         <img src="image/timer-3d-icon-png-download-10316397.webp" alt="AI Lab Analyzer" class="project-icon">
+                    </div>
+                    <h3>کۆدی شین (CPR / Code Blue Timer)</h3>
+                    <p>تایمەری فریاکەوتن بۆ ڕاهێنانی CPR کە هەر ٢ خولەک جارێک ئاگادارت دەکاتەوە.</p>
+                    <button class="btn" onclick="openApp('code-blue-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                        <img src="image/question-mark-3d-icon-png-download-12809914.webp" alt="AI Lab Analyzer" class="project-icon">
+                    </div>
+                    <h3>کێبڕکێی زانیاری (MedQuiz)</h3>
+                    <p>یارییەکی پرسیار و وەڵامی پزیشکی و پەرستاری بۆ تاقیکردنەوەی ئاستی خۆت.</p>
+                    <button class="btn" onclick="openApp('med-quiz-app')">کردنەوەی ئەپ</button>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="design-lifestyle" class="container">
+            <h2 class="section-title">🎨 ئامرازەکانی دیزاین و ژیانی ڕۆژانە</h2>
+            <div class="grid">
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                        <img src="image/website-ocr-3d-icon-png-download-12153127.webp" alt="AI Lab Analyzer" class="project-icon">
+                    </div>
+                    <h3>دەرهێنانی تێکست لە وێنە (OCR)</h3>
+                    <p>وێنەی لاپەڕەیەک یان دەقێک دابنێ بۆ ئەوەی نووسینەکەت بە شێوەی دەق پێبداتەوە.</p>
+                    <button class="btn" onclick="openApp('ocr-extractor-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                       <img src="image/text-to-speech-3d-icon-png-download-7946829.webp" alt="AI Lab Analyzer" class="project-icon">
+                    </div>
+                    <h3>گۆڕینی نووسین بۆ دەنگ (TTS)</h3>
+                    <p>دەقەکەت بنووسە و بە یەک کلیک بیگۆڕە بۆ دەنگێکی ڕوون و ڕەوان.</p>
+                    <button class="btn" onclick="openApp('text-to-speech-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                        <img src="image/color-picker-3d-icon-png-download-3408771@0.webp" alt="AI Lab Analyzer" class="project-icon">
+                    </div>
+                    <h3>ڕەنگدۆزەوە (Color Palette Picker)</h3>
+                    <p>دروستکردنی کۆدی ڕەنگەکانی (HEX/RGB) و پێشنیارکردنی تێکەڵەی ڕەنگی شیک.</p>
+                    <button class="btn" onclick="openApp('color-palette-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                        <img src="image/3d-cartoon-character-sleeping-in-bed-png.webp" alt="AI Lab Analyzer" class="project-icon">
+                    </div>
+                    <h3>دیزاینەری خەونەکان (Sleep Calculator)</h3>
+                    <p>ڕێکخستنی کاتەکانی خەو بەپێی سوڕەکانی خەون (Sleep Cycles) بۆ بەئاگاهاتنەوەیەکی چالاک.</p>
+                    <button class="btn" onclick="openApp('sleep-cycle-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                        <img src="image/3d-label-discount-png.webp" alt="AI Lab Analyzer" class="project-icon">
+                    </div>
+                    <h3>حاسیبەی داشکاندن (Discount Calc)</h3>
+                    <p>نرخی کاڵا و ڕێژەی داشکاندن بنووسە بۆ دۆزینەوەی نرخی کۆتایی و پارەی پاشەکەوتکراو.</p>
+                    <button class="btn" onclick="openApp('discount-calc-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                        <img src="image/bmi-app-3d-icon-png-download-12842550.webp" alt="AI Lab Analyzer" class="project-icon">
+                    </div>
+                    <h3>حاسیبەی کێش و باڵ (BMI Calculator)</h3>
+                    <p>باڵ و کێشی خۆت بنووسە بۆ دیاریکردنی ئاستی تەندروستی جەستەت بەپێی پێوەرە جیهانییەکان.</p>
+                    <button class="btn" onclick="openApp('bmi-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                        <div class="card-icon" style="position:absolute; top:35%; left:43%;">🧘</div>
+                    </div>
+                    <h3>هێورکەرەوەی هەناسە (Breathing Guide)</h3>
+                    <p>ئەنیمەیشنێکی ئارامکەرەوە و پێشکەوتوو بۆ ڕێکخستنی هەناسەدان و کەمکردنەوەی دڵەڕاوکێ.</p>
+                    <button class="btn" onclick="openApp('breath-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                        <div class="card-icon" style="position:absolute; top:35%; left:43%;">✍️</div>
+                    </div>
+                    <h3>واژۆی دیجیتاڵی (Signature Pad)</h3>
+                    <p>شاشەیەکی سپی لۆکس بۆ واژۆکردن بە دەست یان ماوس و دابەزاندنی وەک وێنەی شەفاف.</p>
+                    <button class="btn" onclick="openApp('signature-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                        <div class="card-icon" style="position:absolute; top:35%; left:43%;">⏱️</div>
+                    </div>
+                    <h3>تایمەری پۆمۆدۆرۆ (Pomodoro Focus)</h3>
+                    <p>سیستەمی ٢٥ خولەک خوێندن و ٥ خولەک پشوو لەگەڵ دەنگی ئارامکەرەوەی پاشبنەما.</p>
+                    <button class="btn" onclick="openApp('pomodoro-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                        <div class="card-icon" style="position:absolute; top:35%; left:43%;">🔗</div>
+                    </div>
+                    <h3>دروستکەری کۆدی QR Generator</h3>
+                    <p>هەر لینک، دەق، یان ژمارەیەک بنووسە و دەستبەجێ کۆدی QRی فەرمی بۆ دروست بکە.</p>
+                    <button class="btn" onclick="openApp('qr-generator-app')">کردنەوەی ئەپ</button>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="entertainment-tools" class="container">
+            <h2 class="section-title">🎮 ئامرازەکانی کاتبەسەربردن و بڕیاردانی خێرا</h2>
+            <div class="grid">
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                        <div class="card-icon" style="position:absolute; top:35%; left:43%;">🎡</div>
+                    </div>
+                    <h3>چرخی بڕیاردەر (Decision Wheel)</h3>
+                    <p>بژاردەکانت بنووسە و چرخەکە بسوڕێنە بۆ هەڵبژاردنی تیروپشکی و هەڕەمەکی.</p>
+                    <button class="btn" onclick="openApp('decision-wheel-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                        <div class="card-icon" style="position:absolute; top:35%; left:43%;">🪙</div>
+                    </div>
+                    <h3>شیر و خەت (Coin Flipper)</h3>
+                    <p>دراوێکی دیجیتاڵی مۆدێرن کە بە یەک کلیک دەسوڕێتەوە بۆ هەڵبژاردنی خێرا لە نێوان دوو بژاردەدا.</p>
+                    <button class="btn" onclick="openApp('coin-flipper-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                        <div class="card-icon" style="position:absolute; top:35%; left:43%;">🎲</div>
+                    </div>
+                    <h3>هاویشتنی زار (Dice Roller)</h3>
+                    <p>زارێکی سێ ڕەهەندی دیجیتاڵی بۆ یارییەکانی بۆرد گەیم؛ ژمارەی ١ بۆ ٦ بە هەڕەمەکی دەردەهێنێت.</p>
+                    <button class="btn" onclick="openApp('dice-roller-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                        <div class="card-icon" style="position:absolute; top:35%; left:43%;">⚡</div>
+                    </div>
+                    <h3>تاقیکردنەوەی خێرایی دەمار (Reaction Test)</h3>
+                    <p>کاتێک شاشەکە لە سوورەوە دەبێتە سەوز، خێرا کلیک بکە بۆ زانینی خێرایی دەمارت بە ms.</p>
+                    <button class="btn" onclick="openApp('reaction-time-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                        <div class="card-icon" style="position:absolute; top:35%; left:43%;">👤</div>
+                    </div>
+                    <h3>دروستکەری ناوی بەکارهێنەر</h3>
+                    <p>ناوی خۆت بنووسە بۆ دروستکردنی ناوی شیک و ناوازە بۆ سۆشیاڵ میدیا و گەیمینگ.</p>
+                    <button class="btn" onclick="openApp('username-gen-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                        <div class="card-icon" style="position:absolute; top:35%; left:43%;">⏳</div>
+                    </div>
+                    <h3>کاتی ماو بۆ بۆنەکان (Countdown)</h3>
+                    <p>تایمەری بژاردنی پێچەوانە بۆ ڕووداو، جەژن و بۆنە تایبەتە کورت و درێژەکان.</p>
+                    <button class="btn" onclick="openApp('countdown-timer-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                        <div class="card-icon" style="position:absolute; top:35%; left:43%;">📅</div>
+                    </div>
+                    <h3>ژمێرەری تەمەن بە چرکە (Age in Secs)</h3>
+                    <p>تەمەنی وردت بە چرکە، خولەک، کاتژمێر و ڕۆژ لەگەڵ چرکەژمێری زیندوودا ببینە.</p>
+                    <button class="btn" onclick="openApp('age-calc-app')">کردنەوەی ئەپ</button>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-img-wrapper">
+                        <div class="card-icon" style="position:absolute; top:35%; left:43%;">📶</div>
+                    </div>
+                    <h3>پشکنەری هێڵ و پینگ (Ping Tester)</h3>
+                    <p>تەنها بە یەک کلیک دۆخی جێگیری هێڵەکەت و خێرایی ناردنی پاکێجەکان (Ping) بزانە.</p>
+                    <button class="btn" onclick="openApp('ping-tester-app')">کردنەوەی ئەپ</button>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="about-box glass">
+               <img src="image/3d-programming-developer-working-on-project-illustration-png.webp" alt="AI Lab Analyzer" class="project-icon">
+                <div class="about-text">
+                    <h3>دەربارەی گەشەپێدەر</h3>
+                    <p> سڵاو، من Ismail (ئیسماعیل)؛ خوێندکاری قۆناغی دووەم لە بەشی پەرستاری (Nursing) و پەرەپێدەری پلاتفۆرمی MedByte. ئەم سەکۆیەم وەک هەوڵێک بۆ تێکەڵکردنی زانستی پەرستاری و هێزی تەکنەلۆژیا دامەزراندووە. ئامانجم دابینکردنی ئامرازی دیجیتاڵی، ژیر و خێرایە کە بتوانێت یارمەتیدەرێکی ڕاستەقینە بێت بۆ خوێندکارانی کەرتی پزیشکی و پەرستاران لە ڕاپەڕاندنی کارەکانیاندا.</p>
+                    <div class="social-links">
+                        <a href="https://t.me/ISM4IL_1" target="_blank" class="social-btn telegram"> تێلیگرام</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 MedByte. هەموو مافەکانی پارێزراوە بۆ اسماعیل  .</p>
+        </footer>
+
+    </div>
+
+    <div id="age-calc-app" class="app-page" style="display: none;">
+        <div class="app-header">
+            <button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە بۆ مێنیو</button>
+            <div class="app-title">📅 حاسیبەی تەمەن بە چرکە و خولەک</div>
+        </div>
+        <div class="app-content">
+            <div class="age-calculator-box glass">
+                <p class="input-label">ڕێکەوتی لەدایکبوونت دیاری بکە:</p>
+                <div class="custom-date-inputs">
+                    <input type="number" id="birth-year" placeholder="ساڵ (YYYY)" min="1900" max="2026">
+                    <input type="number" id="birth-month" placeholder="مانگ (MM)" min="1" max="12">
+                    <input type="number" id="birth-day" placeholder="ڕۆژ (DD)" min="1" max="31">
+                </div>
+                <button class="btn calc-trigger-btn" onclick="startAgeCalculation()">⚙️ ئەژمارکردنی تەمەن</button>
+                <div id="age-result" class="age-result-grid" style="display: none;">
+                    <div class="result-card">
+                        <span id="res-years">0</span><p>ساڵ</p>
+                    </div>
+                    <div class="result-card">
+                        <span id="res-months">0</span><p>مانگ</p>
+                    </div>
+                    <div class="result-card">
+                        <span id="res-days">0</span><p>ڕۆژ</p>
+                    </div>
+                    <div class="result-card">
+                        <span id="res-hours">0</span><p>کاتژمێر</p>
+                    </div>
+                    <div class="result-card">
+                        <span id="res-minutes">0</span><p>خولەک</p>
+                    </div>
+                    <div class="result-card neon-box">
+                        <span id="res-seconds">0</span><p>چرکە</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="signature-app" class="app-page" style="display: none;">
+        <div class="app-header">
+            <button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button>
+            <div class="app-title">✍️ تەختەی واژۆی ئەلیکترۆنی</div>
+        </div>
+        <div class="app-content">
+            <div class="signature-container glass">
+                <div class="canvas-controls">
+                    <div class="control-group">
+                        <label>ڕەنگ:</label>
+                        <div class="color-palette">
+                            <div class="color-option active" style="background-color: #ffffff;" onclick="setPenColor('#ffffff', this)"></div>
+                            <div class="color-option" style="background-color: #00d2ff;" onclick="setPenColor('#00d2ff', this)"></div>
+                            <div class="color-option" style="background-color: #00ffaa;" onclick="setPenColor('#00ffaa', this)"></div>
+                            <div class="color-option" style="background-color: #111827;" onclick="setPenColor('#111827', this)"></div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label>قەبارە:</label>
+                        <input type="range" id="pen-size" min="1" max="10" value="3" oninput="setPenSize(this.value)">
+                        <div class="size-preview-container"><div id="size-preview-circle"></div></div>
+                    </div>
+                    <button id="eraser-btn" class="tool-btn" onclick="toggleEraser()">🧽 سڕەرەوە</button>
+                </div>
+                <canvas id="signature-canvas" width="500" height="250"></canvas>
+                <div class="signature-actions">
+                    <button class="btn clear-btn" onclick="clearCanvas()">🗑️ پاککردنەوە</button>
+                    <button class="btn download-btn" onclick="downloadSignature()">💾 دابەزاندنی واژۆ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="bmi-app" class="app-page" style="display: none;">
+        <div class="app-header">
+            <button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button>
+            <div class="app-title">⚖️ ئەژمارکردنی بارستایی جەستە (BMI)</div>
+        </div>
+        <div class="app-content">
+            <div class="bmi-container glass">
+                <div class="bmi-inputs">
+                    <div class="bmi-input-field">
+                        <label>کێشی تۆ (بۆ نموونە: 75 کیلۆگرام):</label>
+                        <input type="number" id="bmi-weight" placeholder="کیلۆگرام (kg)">
+                    </div>
+                    <div class="bmi-input-field">
+                        <label>باڵی تۆ (بۆ نموونە: 175 سانتیمەتر):</label>
+                        <input type="number" id="bmi-height" placeholder="سانتیمەتر (cm)">
+                    </div>
+                </div>
+                <button class="btn bmi-calc-btn" onclick="calculateBMI()">📊 ئەژماردن</button>
+                <div id="bmi-result-box" class="bmi-result glass" style="display: none;">
+                    <div class="gauge-wrapper">
+                        <div class="bmi-gauge">
+                            <div class="gauge-section underweight"></div>
+                            <div class="gauge-section normal"></div>
+                            <div class="gauge-section overweight"></div>
+                            <div class="gauge-section obese"></div>
+                            <div id="gauge-needle" class="gauge-needle"></div>
+                        </div>
+                        <div class="gauge-labels"><span>کەم</span><span>ئاسایی</span><span>زیادە</span><span>قەڵەو</span></div>
+                    </div>
+                    <div class="bmi-score-wrapper">
+                        <span id="bmi-score-value">24.2</span>
+                        <p>نمرەی BMI گشتی تۆ</p>
+                    </div>
+                    <div id="bmi-status-badge" class="bmi-status">ئاسایی</div>
+                    <p id="bmi-advice" class="bmi-advice-text"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="iv-drip-app" class="app-page" style="display: none;">
+        <div class="app-header">
+            <button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button>
+            <div class="app-title">📉 خێرایی دڵۆپاندنی دەرمان و موغەزی</div>
+        </div>
+        <div class="app-content">
+            <div class="iv-container glass">
+                <div class="iv-bag-design">
+                    <div class="bag-top"></div>
+                    <div class="bag"><div class="liquid"></div></div>
+                    <div id="drip-container" style="position: relative; height: 100px;"></div>
+                </div>
+                <div class="iv-inputs">
+                    <input type="number" id="iv-volume" placeholder="بڕی شلەمەنی (mL)">
+                    <input type="number" id="iv-time" placeholder="کات بە کاتژمێر (Hours)">
+                    <select id="iv-factor" class="glass-select">
+                        <option value="20">دڵۆپێنەری گەورە - Macro (20 gtt/mL)</option>
+                        <option value="15">دڵۆپێنەری ئاسایی (15 gtt/mL)</option>
+                        <option value="60">دڵۆپێنەری منداڵان - Micro (60 gtt/mL)</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="calculateIV()">💧 ئەژمارکردنی خێرایی</button>
+                <div id="iv-result" class="iv-result" style="display: none;">
+                    <span id="iv-speed">0</span>
+                    <p>دڵۆپ لە خولەکێکدا (gtt/min)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="breath-app" class="app-page" style="display: none;">
+        <div class="app-header">
+            <button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button>
+            <div class="app-title">🧘 هێورکەرەوەی هەناسە و دژە قەلەقی</div>
+        </div>
+        <div class="app-content" style="display: flex; justify-content: center; width: 100%;">
+            <div id="breath-menu" class="breath-card glass">
+                <h3>سیستەمی ڕێکخستنی هەناسەدان</h3>
+                <p>یەکێک لە بژاردەکانی خوارەوە هەڵبژێره بۆ چالاککردنی سیستەمەکە:</p>
+                <div class="menu-buttons">
+                    <button class="btn-menu" onclick="showBreathView('training-view')">🧘‍♂️ دەستپێکردنی ڕاهێنانی هێورکەرەوە (٤-٤-٤)</button>
+                    <button class="btn-menu" onclick="showBreathView('test-view')">⏱️ تاقیکردنەوەی ماوەی ڕاگرتنی هەناسە</button>
+                </div>
+            </div>
+
+            <div id="training-view" class="breath-card glass" style="display: none;">
+                <div class="visual-box">
+                    <div id="train-circle" class="premium-bubble"><div class="bubble-inner"></div></div>
+                </div>
+                <h2 id="train-text" class="status-glow-text">ئامادەی بۆ راهێنان؟</h2>
+                <div id="train-timer" class="timer-badge">کاتی ڕاهێنان: 00:00</div>
+                <div class="actions-row">
+                    <button class="btn btn-start" id="start-train-btn" onclick="startTraining()">دەستپێکردن</button>
+                    <button class="btn btn-stop" id="stop-train-btn" onclick="stopBreathApp()" style="display: none;">وەستاندن</button>
+                    <button class="btn btn-back" onclick="showBreathView('breath-menu')">گەڕانەوە</button>
+                </div>
+            </div>
+
+            <div id="test-view" class="breath-card glass" style="display: none;">
+                <div class="gauge-wrapper">
+                    <h2 id="test-text" class="status-glow-text">0 چرکە</h2>
+                    <div id="test-level-badge" class="level-badge">ئامادەبە</div>
+                    <div class="gauge-container">
+                        <div id="gauge-line" class="gauge-line-fill"></div>
+                        <div class="gauge-ticks">
+                            <span class="tick" data-label="سەرەتایی">|</span>
+                            <span class="tick" data-label="ئاسایی">|</span>
+                            <span class="tick" data-label="باش">|</span>
+                            <span class="tick" data-label="نایاب">|</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions-row" style="margin-top: 40px;">
+                    <button class="btn btn-start" id="start-test-btn" onclick="startHoldTest()">دەستپێکردن</button>
+                    <button class="btn btn-stop" id="stop-test-btn" onclick="stopBreathApp()" style="display: none;">وەستاندن</button>
+                    <button class="btn btn-back" onclick="showBreathView('breath-menu')">گەڕانەوە</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<div id="advanced-burn-app" class="app-page glass animate-fade" style="display: none;">
+    <div class="app-header">
+        <button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button>
+        <h2>🔥 سیستەمی پێشکەوتووی پزیشکی بۆ شیکاری سووتاوی (MedByte TBSA)</h2>
+        <p>دیاریکردنی وردی ڕێژەی سووتاوی، پرسیارە کلینیکییەکان و داگرتنی ڕاپۆرت وەک وێنە و تێکست</p>
+    </div>
+
+    <div class="patient-detailed-form glass-inner">
+        <div class="form-row">
+            <div class="input-group">
+                <label>👤 ناوی سیانی نەخۆش:</label>
+                <input type="text" id="patient-name" placeholder="ناو لێرە بنووسە...">
+            </div>
+            <div class="input-group">
+                <label>👶 تەمەن (ساڵ):</label>
+                <input type="number" id="patient-age" value="25" min="0" max="120">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="input-group">
+                <label>⚖️ کێش (کیلۆگرام):</label>
+                <input type="number" id="patient-weight" value="70" min="1">
+            </div>
+            <div class="input-group">
+                <label>🧬 ڕەگەز:</label>
+                <select id="patient-gender">
+                    <option value="نێر">نێر (Male)</option>
+                    <option value="مێ">مێ (Female)</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="clinical-questions glass-inner">
+        <h3>🩺 هەڵسەنگاندنی نیشانەکان و هۆکارەکان (Risk Assessment):</h3>
+        <div class="questions-grid">
+            <div class="q-box">
+                <p>١. ئایا نەخۆشەکە دووکەڵی زۆری هەڵمژیوە؟ (Inhalation Injury)</p>
+                <div class="radio-group">
+                    <label><input type="radio" name="q-inhalation" value="بەڵێ"> بەڵێ</label>
+                    <label><input type="radio" name="q-inhalation" value="نەخۆش" checked> نەخێر</label>
+                </div>
+            </div>
+            <div class="q-box">
+                <p>٢. ئایا سووتانەکە بەهۆی کارەبا یان کیمیاییەوە بووە؟</p>
+                <div class="radio-group">
+                    <label><input type="radio" name="q-type" value="بەڵێ"> بەڵێ</label>
+                    <label><input type="radio" name="q-type" value="نەخۆش" checked> نەخێر</label>
+                </div>
+            </div>
+            <div class="q-box">
+                <p>٣. ئایا سووتانی شوێنە هەستیارەکان هەیە؟ (دەموچاو، دەست، جومگەکان)</p>
+                <div class="radio-group">
+                    <label><input type="radio" name="q-sensitive" value="بەڵێ"> بەڵێ</label>
+                    <label><input type="radio" name="q-sensitive" value="نەخۆش" checked> نەخێر</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-content-layout">
+        <div class="body-chart-container glass-inner">
+            <h3 style="text-align: center; color: #00d4ff;">🧍 نەخشەی گرافیکی کارلێکەر (کلیک لە بەشەکان بکە):</h3>
+            <div class="views-wrapper">
+                <div class="body-view">
+                    <h4>پێشەوە (Anterior)</h4>
+                    <div class="parts-list-finer" id="parts-front"></div>
+                </div>
+                <div class="body-view">
+                    <h4>دواوە (Posterior)</h4>
+                    <div class="parts-list-finer" id="parts-back"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="burn-result-panel glass-inner">
+            <button class="btn btn-calculate" onclick="performFinalCalculation()">🧮 هەژمارکردنی گشتی ئەنجامەکان</button>
+            <div class="tbsa-counter-glow" style="margin-top: 20px;">
+                <span id="total-tbsa">0%</span>
+                <p>کۆی ڕێژەی سووتاوی (TBSA)</p>
+            </div>
+
+            <div id="download-zone" class="download-zone" style="display: none;">
+                <h4>📥 داگرتنی ڕاپۆرت:</h4>
+                <button class="btn btn-text" onclick="downloadAsTXT()">📄 داگرتن وەک فایل (Text)</button>
+                <button class="btn btn-image" onclick="downloadAsImage()">🖼️ داگرتن وەک وێنە (Image)</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ─── 💊 مۆدیۆلی هۆشمەندی دەرمان (AI Pill Info Wizard) ─── -->
+<div id="ai-pill-app" class="app-page glass animate-fade" style="display: none;">
+    <div class="app-header">
+        <button class="back-btn" onclick="resetPillWizard();">🔙 گەڕانەوە</button>
+        <div class="app-title">💊 MedByte Pill Hub</div>
+    </div>
+
+    <div class="app-content pill-wizard-layout">
+        
+        <div class="pill-input-zone glass-inner">
+            
+            <div id="step-role" class="wizard-step">
+                <h3 class="step-title">👤 سەرەتا پێمان بڵێ تۆ کامەیانی؟</h3>
+                <div class="wizard-options-vertical">
+                    <button class="btn btn-primary wizard-large-btn" onclick="selectWizardRole('patient')">🏡 من نەخۆشم (زانیاری سادە بە کوردی)</button>
+                    <button class="btn btn-secondary wizard-large-btn" onclick="selectWizardRole('clinical')">🩺 من پەرستار / پزیشکم (کوردی + Clinical English)</button>
+                </div>
+            </div>
+
+            <div id="step-input-method" class="wizard-step" style="display: none;">
+                <h3 class="step-title">🔍 چۆن دەتەوێت دەرمانەکە بناسێنین؟</h3>
+                <div class="wizard-options-vertical">
+                    <button class="btn btn-primary wizard-large-btn" onclick="selectWizardInput('camera')">📸 وێنەگرتن یان بارکردنی وێنە</button>
+                    <button class="btn btn-secondary wizard-large-btn" onclick="selectWizardInput('text')">📝 نووسینی ناوی دەرمان</button>
+                </div>
+                <button class="btn-text" onclick="goBackToStep('step-role')">⬅️ گەڕانەوە بۆ هەنگاوی پێشوو</button>
+            </div>
+
+            <div id="step-media-input" class="wizard-step" style="display: none;">
+                <h3 class="step-title">📸 وێنەی دەرمانەکە بگرە یان دابنێ</h3>
+                
+                <div id="camera-preview-container" style="display: none; position: relative;">
+                    <video id="pill-video" autoplay playsinline class="camera-feed glass"></video>
+                    <button class="btn btn-primary" onclick="capturePillPhoto()" style="margin: 10px 0; width: 100%;">📸 وێنەکە بگرە</button>
+                </div>
+
+                <div id="pill-preview-box" class="pill-preview-holder glass" style="display: none;">
+                    <img id="pill-captured-image" src="" alt="Captured Pill">
+                    <button class="btn-delete-photo" onclick="clearCapturedPhoto()">❌ سڕینەوەی وێنە</button>
+                    <p style="color: var(--secondary); font-size: 13px; margin-top: 5px;">✓ وێنەکە ئامادەیە بۆ ناردن</p>
+                </div>
+
+                <div class="wizard-actions-row" style="margin-top: 15px;">
+                    <button class="btn btn-secondary" onclick="startLiveCamera()">📷 کردنەوەی کامێرا</button>
+                    <button class="btn btn-secondary" onclick="document.getElementById('pill-file-hidden').click()">📁 بارکردنی فایل</button>
+                    <input type="file" id="pill-file-hidden" accept="image/*" style="display: none;" onchange="handleWizardImage(event)">
+                </div>
+
+                <hr style="border-color: rgba(255,255,255,0.05); margin: 20px 0;">
+                <button class="btn btn-primary" style="width: 100%;" onclick="sendPillWizardToAI()">🤖 شیکردنەوەی وێنەکە</button>
+                <button class="btn-text" onclick="goBackToStep('step-input-method')">⬅️ گەڕانەوە</button>
+            </div>
+
+            <div id="step-text-input" class="wizard-step" style="display: none;">
+                <h3 class="step-title">📝 ناوی دەرمانەکە بنووسە</h3>
+                <div class="form-group">
+                    <input type="text" id="wizard-pill-name-input" placeholder="بۆ نموونە: Paracetamol, Amoxicillin...">
+                </div>
+                <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" onclick="sendPillWizardToAI()">🤖 دەستپێکردنی شیکردنەوە</button>
+                <button class="btn-text" onclick="goBackToStep('step-input-method')">⬅️ گەڕانەوە</button>
+            </div>
+
+            <div id="step-interaction-query" class="wizard-step" style="display: none; margin-top: 20px;">
+                <div class="interaction-ask-box glass-inner red-neon-alert">
+                    <h4>🔄 پشکنینی کارلێکی دەرمانی (Interaction Check)</h4>
+                    <p>ئایا حەب یان دەرمانێکی تر هەیە کە نەخۆشەکە لە هەمان کاتدا بیخوات؟</p>
+                    <div class="form-group" style="margin-top: 10px;">
+                        <input type="text" id="wizard-secondary-drugs" placeholder="ناوی دەرمانەکانی تر بنووسە...">
+                    </div>
+                    <button class="btn btn-secondary" style="width: 100%; margin-top: 8px;" onclick="checkSecondaryInteractions()">🔍 پشکنینی کارلێکی دەرمانەکان پێکەوە</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="pill-result-zone glass-inner">
+            <h3 class="section-title">📊 ڕاپۆرتی دەرمانی</h3>
+            
+            <div id="wizard-placeholder" class="result-placeholder">
+                <span class="lock-icon">🔒</span>
+                <p>پاش تەواوکردنی هەنگاوەکانی لای ڕاست، زانیارییەکان لێرە دەردەکەون.</p>
+            </div>
+
+            <div id="wizard-loading" style="display: none; text-align: center; padding: 40px 0;">
+                <div class="spinner"></div>
+                <p style="margin-top: 15px; color: var(--primary);">MedByte AI خەریکی لێکۆڵینەوەیە...</p>
+            </div>
+
+            <div id="wizard-bento-results" class="pill-bento-container" style="display: none;">
+                <div class="bento-card card-main-info glass-inner">
+                    <div class="bento-header">🛡️ زانیاری سەرەکی</div>
+                    <h2 id="w-pill-name">-</h2>
+                    <p><strong>ناوی زانستی:</strong> <span id="w-generic-name">-</span></p>
+                    <p><strong>جۆرەکەی:</strong> <span id="w-pill-type">-</span></p>
+                </div>
+
+                <div class="bento-card glass-inner">
+                    <div class="bento-header">🏢 ناوە بازرگانییەکان</div>
+                    <p id="w-brands">-</p>
+                </div>
+
+                <div class="bento-card glass-inner">
+                    <div class="bento-header" id="w-mechanism-title">💡 ڕێنمایی بەکارهێنان / MoA</div>
+                    <p id="w-mechanism">-</p>
+                </div>
+
+                <div class="bento-card glass-inner" id="w-preg-card">
+                    <div class="bento-header">🤰 دووگیانی و شیردان (FDA)</div>
+                    <span id="w-preg-badge" class="preg-badge">N/A</span>
+                    <p id="w-preg-text" style="margin-top:5px; font-size:12px;">-</p>
+                </div>
+
+                <div class="bento-card glass-inner" id="w-interact-card">
+                    <div class="bento-header">⚠️ کارلێک و هۆشدارییەکان</div>
+                    <p id="w-interactions">-</p>
+                </div>
+
+                <div class="bento-card glass-inner red-neon-alert">
+                    <div class="bento-header" style="color:#ef4444;">🚨 فریاکەوتنی خێرا (Overdose)</div>
+                    <p id="w-overdose" style="font-size:12px;">-</p>
+                </div>
+
+                <div class="pill-legal-disclaimer">
+                    ئەم ئامرازە تەنها بۆ فێربوون و کارئاسانی گشتییە؛ بە چەندین هۆکار جێگەی ڕاوێژی ڕاستەوخۆی پزیشک یان دەرمانساز ناگرێتەوە.
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="ai-rx-app" class="app-page glass animate-fade" style="display: none;">
+    <div class="app-header">
+        <button class="back-btn" onclick="resetRxWizard();">🔙 گەڕانەوە</button>
+        <div class="app-title">📝 MedByte Rx Decoder</div>
+    </div>
+
+    <div class="app-content pill-wizard-layout">
+        
+        <div class="pill-input-zone glass-inner">
+            
+            <div id="rx-step-input-method" class="wizard-step">
+                <h3 class="step-title">🔍 چۆن دەتەوێت وێنەی ڕەچەتەکە داخڵ بکەیت؟</h3>
+                <div class="wizard-options-vertical">
+                    <button class="btn btn-primary wizard-large-btn" onclick="selectRxInput('camera')">📸 وێنەگرتنی ڕاستەوخۆی ڕەچەتە</button>
+                    <button class="btn btn-secondary wizard-large-btn" onclick="selectRxInput('file')">📁 بارکردنی فایل لە گەلەرییەوە</button>
+                </div>
+            </div>
+
+            <div id="rx-step-media" class="wizard-step" style="display: none;">
+                <h3 class="step-title">📸 وێنەی خەتی پزیشکەکە یان ڕەچەتەکە دیاری بکە</h3>
+                
+                <div id="rx-camera-container" style="display: none; position: relative;">
+                    <video id="rx-video" autoplay playsinline class="camera-feed glass"></video>
+                    <button class="btn btn-primary" onclick="captureRxPhoto()" style="margin: 10px 0; width: 100%;">📸 چرکاندنی وێنەکە</button>
+                </div>
+
+                <div id="rx-preview-box" class="pill-preview-holder glass" style="display: none;">
+                    <img id="rx-captured-image" src="" alt="Rx Prescription">
+                    <button class="btn-delete-photo" onclick="clearRxPhoto()">❌ سڕینەوەی وێنە</button>
+                    <p style="color: var(--secondary); font-size: 13px; margin-top: 5px;">✓ وێنەی ڕەچەتەکە ئامادەیە</p>
+                </div>
+
+                <div class="wizard-actions-row" style="margin-top: 15px;">
+                    <button class="btn btn-secondary" onclick="startRxLiveCamera()">📷 کردنەوەی کامێرا</button>
+                    <button class="btn btn-secondary" onclick="document.getElementById('rx-file-hidden').click()">📁 هەڵبژاردنی فایل</button>
+                    <input type="file" id="rx-file-hidden" accept="image/*" style="display: none;" onchange="handleRxImage(event)">
+                </div>
+
+                <hr style="border-color: rgba(255,255,255,0.05); margin: 20px 0;">
+                <button class="btn btn-primary" style="width: 100%;" onclick="sendRxToAI()">🤖 دەستپێکردنی خوێندنەوە</button>
+                <button class="btn-text" onclick="goBackToRxStep('rx-step-input-method')">⬅️ گەڕانەوە</button>
+            </div>
+
+        </div>
+
+        <div class="pill-result-zone glass-inner">
+            <h3 class="section-title">📊 ئەنجامی شیکردنەوەی ڕەچەتە</h3>
+            
+            <div id="rx-placeholder" class="result-placeholder">
+                <span class="lock-icon">🔍</span>
+                <p>پاش بارکردنی وێنەی ڕەچەتەکە، لێکدانەوەی خەتەکە لێرە دەردەکەوێت.</p>
+            </div>
+
+            <div id="rx-loading" style="display: none; text-align: center; padding: 40px 0;">
+                <div class="spinner"></div>
+                <p style="margin-top: 15px; color: var(--primary);">MedByte AI خەریکی خوێندنەوەی خەتەکەیە...</p>
+            </div>
+
+            <div id="rx-bento-results" class="pill-bento-container" style="display: none;">
+                <div class="bento-card card-main-info glass-inner" style="grid-column: span 2;">
+                    <div class="bento-header">📝 دەرمانە دۆزراوەکان (Decoded Medications)</div>
+                    <div id="rx-medications-list" style="margin-top: 10px; line-height: 1.6;">-</div>
+                </div>
+
+                <div class="bento-card glass-inner">
+                    <div class="bento-header">🩺 هۆکاری نوسین (Possible Diagnosis)</div>
+                    <p id="rx-diagnosis">-</p>
+                </div>
+
+                <div class="bento-card glass-inner">
+                    <div class="bento-header">⚠️ تێبینی و ڕێنمایی پەرستاری</div>
+                    <p id="rx-notes">-</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- ─── 🧪 مۆدیۆلی شیکردنەوەی فەحسی تاقیگە (AI Lab Analyzer Wizard) ─── -->
+<div id="ai-lab-app" class="app-page glass animate-fade" style="display: none;">
+    <div class="app-header">
+        <button class="back-btn" onclick="resetLabWizard();">🔙 گەڕانەوە</button>
+        <div class="app-title">🧪 MedByte Lab Analyzer</div>
+    </div>
+
+    <div class="app-content pill-wizard-layout">
+        
+        <!-- 🧙‍♂️ بەشی هەنگاوەکان (Wizard Zone) -->
+        <div class="pill-input-zone glass-inner" style="margin: 0 auto; max-width: 600px;">
+            
+            <!-- هەنگاوی ١: ڕوونکردنەوە دەربارەی پڕۆژەکە -->
+            <div id="lab-step-intro" class="wizard-step">
+                <h3 class="step-title">🔬 بەخێربێیت بۆ بەشی شیکردنەوەی فەحس</h3>
+                <p style="color: var(--text-muted); font-size: 14px; line-height: 1.7; margin-bottom: 20px;">
+                    ئەم ئامرازە هۆشمەندە هاوکاریت دەکات لە خوێندنەوە و لێکدانەوەی فەحسەکانی تاقیگە. سیستەمەکە بەها ناتەندروستەکان دەدۆزێتەوە و ڕوونکردنەوەی کلینیکیت پێشکەش دەکات.
+                </p>
+                <button class="btn btn-primary" style="width: 100%;" onclick="goToLabStep('lab-step-demographics')">دەستپێکردن ➡️</button>
+            </div>
+
+            <!-- هەنگاوی ٢: دیاریکردنی تەمەن و ڕەگەز -->
+            <div id="lab-step-demographics" class="wizard-step" style="display: none;">
+                <h3 class="step-title">👤 زانیارییەکانی نەخۆش</h3>
+                
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px; color: var(--primary);">تەمەنی نەخۆش (بە ساڵ):</label>
+                    <input type="number" id="lab-patient-age" placeholder="بۆ نموونە: ٢5" min="1" max="120">
+                </div>
+
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; color: var(--primary);">ڕەگەزی نەخۆش:</label>
+                    <div style="display: flex; gap: 15px;">
+                        <label style="cursor: pointer;"><input type="radio" name="lab-gender" value="Male" checked> 👨 پیاو</label>
+                        <label style="cursor: pointer;"><input type="radio" name="lab-gender" value="Female"> 👩 ئافرەت</label>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" style="width: 100%;" onclick="validateLabDemographics()">بەردەوامبوون ➡️</button>
+                <button class="btn-text" onclick="goToLabStep('lab-step-intro')">⬅️ گەڕانەوە</button>
+            </div>
+
+            <!-- هەنگاوی ٣: ناردنی وێنەکە -->
+            <div id="lab-step-media" class="wizard-step" style="display: none;">
+                <h3 class="step-title">📸 وێنەی فەحسی تاقیگە (Lab Report)</h3>
+                
+                <div id="lab-camera-container" style="display: none; position: relative;">
+                    <video id="lab-video" autoplay playsinline class="camera-feed glass"></video>
+                    <button class="btn btn-primary" onclick="captureLabPhoto()" style="margin: 10px 0; width: 100%;">📸 چرکاندنی وێنەکە</button>
+                </div>
+
+                <div id="lab-preview-box" class="pill-preview-holder glass" style="display: none;">
+                    <img id="lab-captured-image" src="" alt="Lab Report">
+                    <button class="btn-delete-photo" onclick="clearLabPhoto()">❌ سڕینەوەی وێنە</button>
+                    <p style="color: var(--secondary); font-size: 13px; margin-top: 5px;">✓ وێنەکە ئامادەیە بۆ ناردن</p>
+                </div>
+
+                <div class="wizard-actions-row" style="margin-top: 15px;">
+                    <button class="btn btn-secondary" onclick="startLabLiveCamera()">📷 کردنەوەی کامێرا</button>
+                    <button class="btn btn-secondary" onclick="document.getElementById('lab-file-hidden').click()">📁 هەڵبژاردنی فایل</button>
+                    <input type="file" id="lab-file-hidden" accept="image/*" style="display: none;" onchange="handleLabImage(event)">
+                </div>
+
+                <hr style="border-color: rgba(255,255,255,0.05); margin: 20px 0;">
+                <button class="btn btn-primary" style="width: 100%;" onclick="sendLabToAI()">🤖 دەستپێکردنی شیکردنەوەی هۆشمەند</button>
+                <button class="btn-text" onclick="goToLabStep('lab-step-demographics')">⬅️ گەڕانەوە</button>
+            </div>
+
+            <!-- 🔄 لۆدینگ لە ناو فۆڕمەکەدا پیشان دەدرێت -->
+            <div id="lab-loading" style="display: none; text-align: center; padding: 20px 0;">
+                <div class="spinner"></div>
+                <p style="margin-top: 15px; color: var(--primary);">MedByte AI خەریکی خوێندنەوەی فەحسەکەیە...</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- 🚨 بۆکسی ئەنجامەکان (Pop-up / Modal Layout) ─── -->
+<div id="lab-result-modal" class="lab-modal-overlay" style="display: none;">
+    <div class="lab-modal-box glass animate-zoom">
+        <div class="lab-modal-header">
+            <h3>📊 ئەنجامی شیکردنەوەی فەحس</h3>
+            <button class="close-modal-btn" onclick="closeLabModal()">❌ داخستن</button>
+        </div>
+        
+        <!-- Bento Grid لە ناو بۆکسەکەدا -->
+        <div class="pill-bento-container" style="display: grid; margin-top: 15px;">
+            <div class="bento-card card-main-info glass-inner" style="grid-column: span 2;">
+                <div class="bento-header">⚠️ بەها بەرز یان نزمەکان (Abnormal Values)</div>
+                <div id="lab-abnormal-list" style="margin-top: 10px; line-height: 1.6;">-</div>
+            </div>
+
+            <div class="bento-card glass-inner">
+                <div class="bento-header">💡 مانای نیشانەکان (Clinical Interpretation)</div>
+                <p id="lab-interpretation">-</p>
+            </div>
+
+            <div class="bento-card glass-inner red-neon-alert">
+                <div class="bento-header" style="color:#ef4444;">🚨 هۆشداری و سەرنجی پەرستاری</div>
+                <p id="lab-nursing-notes">-</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="ocr-extractor-app" class="app-page glass animate-fade" style="display: none;">
+    <div class="app-header">
+        <button class="back-btn" onclick="resetOcrWizard();">🔙 گەڕانەوە</button>
+        <div class="app-title">📸 MedByte OCR Extractor</div>
+    </div>
+
+    <div class="app-content pill-wizard-layout">
+        
+        <div class="pill-input-zone glass-inner" style="margin: 0 auto; max-width: 600px;">
+            
+            <div id="ocr-step-intro" class="wizard-step">
+                <h3 class="step-title">📝 دەرهێنانی دەق بە شێوازی ئۆتۆماتیکی</h3>
+                <p style="color: var(--text-muted); font-size: 14px; line-height: 1.7; margin-bottom: 20px;">
+                    وێنەی هەر بەڵگەنامە، ڕاپۆرت یان لاپەڕەیەکی پزیشکی باربکە؛ ئەم ئامرازە بە تەواوی و بەبێ هیچ زیاد و کەمکردنێک تەواوی نووسینەکانی ناو وێنەکە دەکاتە دەقێکی دیجیتاڵی کە دەتوانیت کۆپی بکەیت یان بەشێکی لێ ببڕیت.
+                </p>
+                <button class="btn btn-primary" style="width: 100%;" onclick="goToOcrStep('ocr-step-media')">دەستپێکردن ➡️</button>
+            </div>
+
+            <div id="ocr-step-media" class="wizard-step" style="display: none;">
+                <h3 class="step-title">📸 وێنەی دەقەکە جێگیر بکە</h3>
+                
+                <div id="ocr-camera-container" style="display: none; position: relative;">
+                    <video id="ocr-video" autoplay playsinline class="camera-feed glass"></video>
+                    <button class="btn btn-primary" onclick="captureOcrPhoto()" style="margin: 10px 0; width: 100%;">📸 چرکاندنی وێنەکە</button>
+                </div>
+
+                <div id="ocr-preview-box" class="pill-preview-holder glass" style="display: none;">
+                    <img id="ocr-captured-image" src="" alt="OCR Target">
+                    <button class="btn-delete-photo" onclick="clearOcrPhoto()">❌ سڕینەوەی وێنە</button>
+                    <p style="color: var(--secondary); font-size: 13px; margin-top: 5px;">✓ وێنەکە ئامادەیە بۆ پرۆسەس کردن</p>
+                </div>
+
+                <div class="wizard-actions-row" style="margin-top: 15px;">
+                    <button class="btn btn-secondary" onclick="startOcrLiveCamera()">📷 کامێرای ڕاستەوخۆ</button>
+                    <button class="btn btn-secondary" onclick="document.getElementById('ocr-file-hidden').click()">📁 هەڵبژاردنی فایل</button>
+                    <input type="file" id="ocr-file-hidden" accept="image/*" style="display: none;" onchange="handleOcrImage(event)">
+                </div>
+
+                <hr style="border-color: rgba(255,255,255,0.05); margin: 20px 0;">
+                <button class="btn btn-primary" style="width: 100%;" onclick="sendOcrToAI()">🤖 دەرهێنانی دەقەکە</button>
+                <button class="btn-text" onclick="goToOcrStep('ocr-step-intro')">⬅️ گەڕانەوە</button>
+            </div>
+
+            <div id="ocr-loading" style="display: none; text-align: center; padding: 20px 0;">
+                <div class="spinner"></div>
+                <p style="margin-top: 15px; color: var(--primary);">MedByte AI خەریکی خوێندنەوە و دەرهێنانی دەقەکەیە...</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="ocr-result-modal" class="lab-modal-overlay" style="display: none;">
+    <div class="lab-modal-box glass animate-zoom" style="max-width: 700px;">
+        <div class="lab-modal-header">
+            <h3>📊 دەقی دەرهێنراو (Extracted Text)</h3>
+            <button class="close-modal-btn" onclick="closeOcrModal()">❌ داخستن</button>
+        </div>
+        
+        <div class="glass-inner" style="margin-top: 15px; padding: 15px; border-radius: 10px; background: rgba(0,0,0,0.2);">
+            <textarea id="ocr-extracted-text-area" style="width: 100%; height: 250px; background: transparent; border: none; color: #fff; font-family: monospace; font-size: 14px; line-height: 1.6; resize: vertical; outline: none;" dir="auto"></textarea>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+            <button class="btn btn-primary" style="flex: 1;" onclick="copyOcrText()">📋 کۆپی کردنی هەموو دەقەکە</button>
+            <button class="btn btn-secondary" style="flex: 1;" onclick="trimOcrSelectedText()">✂️ تەنها کۆپیکردنی بەشی دیاریکراو</button>
+            <button class="btn-delete-photo" style="padding: 10px 20px;" onclick="retakeOcrProcess()">🔄 دووبارەکردنەوە</button>
+        </div>
+        <p style="color: var(--text-muted); font-size: 12px; margin-top: 10px; text-align: center;">
+            💡 ئەگەر تەنها بەشێکی دەقەکەت دەوێت، لە ناو بۆکسەکەدا بە ماوس یان پەنجە دەقەکە دیاری (Select) بکە و پاشان دوگمەی مەمک و مقەستەکە (✂️) دابگرە.
+        </p>
+    </div>
+</div>
+    <div id="ai-pill-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">💊 ناسێنەری دەرمان (AI Pill Info)</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+    <div id="ai-lab-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">📊 شیکەرەوەی پشکنین (AI Lab Report)</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+    <div id="ai-rx-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">📝 خوێندنەوەی خەتی پزیشک (AI Rx)</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+    <div id="ai-symptom-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">🩺 دۆزینەوەی نەخۆشی (Symptom Checker)</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+    <div id="burn-nines-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">🔥 حاسیبەی سووتاوی (Rule of Nines)</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+    <div id="parkland-fluid-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">💧 حاسیبەی پارکڵاند (Parkland Fluid)</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+    <div id="med-abbrev-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">🔤 فەرهەنگی کورتکراوە پزیشکییەکان</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+    <div id="med-terminology-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">🧬 تێرمینۆلۆجی پزیشکی</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+    <div id="anatomy-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">𩩲 ئەناتۆمی دیجیتاڵی</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+    <div id="code-blue-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">🚨 کۆدی شین (CPR Timer)</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+    <div id="med-quiz-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">❓ کێبڕکێی زانیاری (MedQuiz)</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+    <div id="ocr-extractor-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">🔍 دەرهێنانی تێکست (OCR)</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+    <div id="text-to-speech-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">🔊 گۆڕینی نووسین بۆ دەنگ</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+    <div id="color-palette-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">🎨 ڕەنگدۆزەوە (Color Palette)</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+    <div id="sleep-cycle-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">🛌 دیزاینەری خەونەکان</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"><</div></div></div>
+    <div id="discount-calc-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">🏷️ حاسیبەی داشکاندن</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+    <div id="pomodoro-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">⏱️ تایمەری پۆمۆدۆرۆ</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+    <div id="qr-generator-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">🔗 دروستکەری کۆدی QR</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+    <div id="decision-wheel-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">🎡 چرخی بڕیاردەر</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+    <div id="coin-flipper-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">🪙 شیر و خەت (Coin Flipper)</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+    <div id="dice-roller-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">🎲 هاویشتنی زار</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+    <div id="reaction-time-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">⚡ تاقیکردنەوەی خێرایی دەمار</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+    <div id="username-gen-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">👤 دروستکەری ناوی بەکارهێنەر</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+    <div id="countdown-timer-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">⏳ کاتی ماو بۆ بۆنەکان</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+    <div id="ping-tester-app" class="app-page" style="display: none;"><div class="app-header"><button class="back-btn" onclick="closeApp()">🔙 گەڕانەوە</button><div class="app-title">📶 پشکنەری هێڵ و پینگ</div></div><div class="app-content"><div class="glass" style="padding:40px; text-align:center;"></div></div></div>
+
+    <script src="script.js"></script>
+    <div class="floating-dock-wrapper">
+    <div class="floating-dock glass">
+        <div class="dock-item magnetic-element" onclick="toggleCommandPalette()" title="گەڕانی خێرا">
+            <span class="dock-icon">🔍</span>
+        </div>
+        <div class="dock-item magnetic-element" onclick="toggleTheme()" title="گۆڕینی دۆخ">
+            <span class="dock-icon">🌙</span>
+        </div>
+        <div class="dock-item magnetic-element" onclick="toggleScratchpad()" title="تێبینی خێرا">
+            <span class="dock-icon">📝</span>
+        </div>
+        <div class="dock-item magnetic-element" onclick="showAlert('بەشی دڵخوازەکان بەمزووانە!')" title="دڵخوازەکان">
+            <span class="dock-icon">⭐</span>
+        </div>
+    </div>
+</div>
+</body>
+</html> 
