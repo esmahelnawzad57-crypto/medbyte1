@@ -18,25 +18,19 @@ function showAlert(message) {
 }
 
 // کردنەوەی ئەپەکە
-// کردنەوەی ئەپەکە
 function openApp(appId) {
-    // ١. شاردنەوەی لاپەڕەی سەرەکی
     document.getElementById('main-homepage').style.display = 'none';
-    
-    // ٢. شاردنەوەی هەموو ئەپەکانی تر بە یەکجاری
     const apps = document.querySelectorAll('.app-page');
     apps.forEach(app => app.style.display = 'none');
     
-    // ٣. چارەسەری ئایدییەکان ئەگەر بە ناوی کۆن بانگ کرابێت
     let targetId = appId;
     if (appId === 'burn-app' || appId === 'calorie-app') {
         targetId = 'advanced-burn-app';
     }
     
-    // ٤. پیشاندانی ئەپە مەبەستەکە
     const targetApp = document.getElementById(targetId);
     if (targetApp) {
-        targetApp.style.display = 'flex'; // لێرەدا دەبێتەوە بە flex و هەموو دیزاینەکەت پیشان دەداتەوە
+        targetApp.style.display = 'flex';
     }
     
     if (targetId === 'breath-app') {
@@ -49,21 +43,15 @@ function openApp(appId) {
 // داخستنی ئەپەکە و گەڕانەوە بۆ لاپەڕەی سەرەکی
 function closeApp() {
     if (timerInterval) clearInterval(timerInterval);
-    if (typeof stopBreathApp === "function") stopBreathApp(); // وەستاندنی هەناسەدان ئەگەر هەبێت
+    if (typeof stopBreathApp === "function") stopBreathApp();
     
-    // شاردنەوەی سەرجەم ئەپەکان
     const apps = document.querySelectorAll('.app-page');
     apps.forEach(app => app.style.display = 'none');
     
-    // پیشاندانەوەی لاپەڕەی سەرەکی بە دروستی
     document.getElementById('main-homepage').style.display = 'block';
-    
-    // بردنەوەی شاشەکە بۆ سەرەوە
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
 // ─── لۆجیکی ئەپی حیسابکردنی تەمەن ───
 function startAgeCalculation() {
     const day = parseInt(document.getElementById('birth-day').value);
@@ -89,12 +77,10 @@ function startAgeCalculation() {
     }
 
     document.getElementById('age-result').style.display = 'grid';
-
     if (timerInterval) clearInterval(timerInterval);
 
     timerInterval = setInterval(() => {
         const currentDate = new Date();
-        
         let years = currentDate.getFullYear() - birthDate.getFullYear();
         let months = currentDate.getMonth() - birthDate.getMonth();
         let days = currentDate.getDate() - birthDate.getDate();
@@ -120,7 +106,6 @@ function startAgeCalculation() {
         document.getElementById('res-hours').innerText = hours;
         document.getElementById('res-minutes').innerText = minutes;
         document.getElementById('res-seconds').innerText = seconds;
-
     }, 1000);
 }
 
@@ -225,7 +210,7 @@ function clearCanvas() {
 function downloadSignature() {
     const buffer = new Uint32Array(ctx.getImageData(0, 0, canvas.width, canvas.height).data.buffer);
     if (!buffer.some(color => color !== 0)) {
-        showAlert("تکایە سەرەتا واژۆکەت بکە، پاشان دایبەزێنە!");
+        showAlert("تکایە سەرەتا واژۆکەت بکە, پاشان دایبەزێنە!");
         return;
     }
     const image = canvas.toDataURL('image/png');
@@ -323,15 +308,12 @@ function calculateIV() {
     }, dripInterval);
 }
 
-// ─── لۆجیکی نوێ و یەکگرتووی ئەپی هەناسەدان (Breath Bubble) ───
+// ─── لۆجیکی ئەپی هەناسەدان ───
 function showBreathView(viewId) {
-    stopBreathApp(); // پااکردنەوەی کاتژمێرەکان پێش گۆڕینی ڕووکار
-    
-    // شاردنەوەی کارتەکانی ناو ئەپی هەناسەدان و نیشاندانی کارتی مەبەست
+    stopBreathApp();
     document.getElementById('breath-menu').style.display = 'none';
     document.getElementById('training-view').style.display = 'none';
     document.getElementById('test-view').style.display = 'none';
-    
     document.getElementById(viewId).style.display = 'flex';
 }
 
@@ -339,15 +321,13 @@ function stopBreathApp() {
     clearInterval(breathInterval);
     clearTimeout(breathSubTimer);
     
-    // پیشاندانەوەی دوگمەکانی دەستپێکردن و شاردنەوەی وەستاندن
     if(document.getElementById('start-train-btn')) document.getElementById('start-train-btn').style.display = 'block';
     if(document.getElementById('stop-train-btn')) document.getElementById('stop-train-btn').style.display = 'none';
     if(document.getElementById('start-test-btn')) document.getElementById('start-test-btn').style.display = 'block';
     if(document.getElementById('stop-test-btn')) document.getElementById('stop-test-btn').style.display = 'none';
 
-    // گەڕاندنەوەی بڵقەکە بۆ دۆخی سەرەتایی
-    const trainCircle = document.getElementById('train-circle');
-    if (trainCircle) trainCircle.className = 'premium-bubble';
+    const circle = document.getElementById('train-circle');
+    if (circle) circle.className = 'premium-bubble';
     
     if(document.getElementById('train-text')) document.getElementById('train-text').innerText = "ئامادەی بۆ راهێنان؟";
     if(document.getElementById('train-timer')) document.getElementById('train-timer').innerText = "کاتی ڕاهێنان: 00:00";
@@ -379,12 +359,10 @@ function startTraining() {
     totalTrainSeconds = 0;
     timerText.innerText = formatBreathTime(totalTrainSeconds);
     
-    // کاتژمێری چرکەژمێر بۆ کاتی گشتی ڕاهێنان
     breathInterval = setInterval(() => {
         totalTrainSeconds++;
         timerText.innerText = formatBreathTime(totalTrainSeconds);
         
-        // نوێکردنەوەی قۆناغەکانی هەناسەدان لە هەر خولێکی ١٢ چرکەییدا
         let cycleTime = totalTrainSeconds % 12;
         if (cycleTime === 0) {
             statusText.innerText = "هەناسە هەڵمژە... 🧘‍♂️";
@@ -398,7 +376,6 @@ function startTraining() {
         }
     }, 1000);
 
-    // دەستپێکردنی قۆناغی یەکەم یەکسەر لە کاتی داگرتنی دوگمەکە
     statusText.innerText = "هەناسە هەڵمژە... 🧘‍♂️";
     circle.className = 'premium-bubble inhale-state';
 }
@@ -417,7 +394,6 @@ function startHoldTest() {
     levelBadge.innerText = "ئامادەبە...";
     levelBadge.style.background = "#ffa502";
 
-    // ٣ چرکە ئەژمێرێت پێش دەستپێکردنی ڕاگرتنی هەناسە
     let countdown = 3;
     breathInterval = setInterval(() => {
         countdown--;
@@ -429,7 +405,6 @@ function startHoldTest() {
             levelBadge.innerText = "دەستپێکردن";
             levelBadge.style.background = "#2ed573";
             
-            // دەستپێکردنی تاقیکردنەوەی ڕاستەقینە
             breathInterval = setInterval(() => {
                 testHoldSeconds++;
                 textDisplay.innerText = testHoldSeconds + " چرکە";
@@ -454,6 +429,7 @@ function startHoldTest() {
         }
     }, 1000);
 }
+
 function toggleTheme() {
     const currentTheme = document.documentElement.getAttribute('data-theme');
     const toggleBtn = document.querySelector('.theme-toggle-btn');
@@ -466,28 +442,20 @@ function toggleTheme() {
         toggleBtn.innerHTML = '☀️ دۆخی ڕووناک';
     }
 }
-// فەنکشنی گەڕانەوە بۆ لاپەڕەی سەرەکی بە کلیک کردن لە لۆگۆ
+
 function goToHome() {
-    // ئەگەر بەکارهێنەر لە ناو لاپەڕەی ئەپێکدا بوو، دایدەخات
-    if (typeof closeApp === "function") {
-        closeApp();
-    }
-    // سکڕۆڵکردن بۆ سەرەتای پەیجی سەرەکی بە شێوازێکی نەرم (Smooth)
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
+    if (typeof closeApp === "function") closeApp();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-// داتای سەرەکی بەشەکانی جەستە و لۆجیکی گۆڕانی ڕێژە بەپێی تەمەن
+
+// ─── لۆجیکی ئەپی سووتاوی (MedByte Burn Calculator) ───
 let selectedBurnParts = new Set();
 let globalTBSA = 0;
 
-// لۆجیکی زۆر وردی دابەشکاری جەستە (سەری سەرەوە، دەموچاو، سنگ، سک، قۆڵ، قەپۆک، هتد)
 function getFinerBodyParts(age) {
     let headHalf = age <= 1 ? 9 : (age < 15 ? (18 - (age * 0.5)) / 2 : 4.5);
     let legHalf = age <= 1 ? 7 : (age < 15 ? (14 + (age * 0.25)) / 2 : 9);
 
-    // دابەشکاری زۆر وردتر بۆ بەدەستهێنانی بەرزترین دیقە
     return {
         front: [
             { id: "face", name: "دەموچاو و سەر (پێشەوە)", pct: parseFloat((headHalf * 0.7).toFixed(1)) },
@@ -532,7 +500,6 @@ function getFinerBodyParts(age) {
 function initFinerApp() {
     const age = parseInt(document.getElementById('patient-age').value) || 25;
     const data = getFinerBodyParts(age);
-    
     renderPartsList('parts-front', data.front);
     renderPartsList('parts-back', data.back);
 }
@@ -555,7 +522,6 @@ function renderPartsList(containerId, arrayParts) {
     });
 }
 
-// 🧮 فەنکشنی سەرەکی دوگمەی هەژمارکردن
 function performFinalCalculation() {
     const age = parseInt(document.getElementById('patient-age').value) || 25;
     const data = getFinerBodyParts(age);
@@ -567,12 +533,9 @@ function performFinalCalculation() {
 
     globalTBSA = total;
     document.getElementById('total-tbsa').innerText = total.toFixed(1) + '%';
-    
-    // پیشاندانی زۆنی داگرتنی فایلەکان دوای کلیک کردن لە دوگمەکە
-    document.getElementById('download-zone').style.style.display = 'block';
+    document.getElementById('download-zone').style.display = 'block';
 }
 
-// 📄 ١. داگرتن وەک فایلی دەق (TXT)
 function downloadAsTXT() {
     const name = document.getElementById('patient-name').value || "دیاری نەکراو";
     const age = document.getElementById('patient-age').value;
@@ -604,29 +567,23 @@ function downloadAsTXT() {
     link.click();
 }
 
-// 🖼️ ٢. داگرتن وەک وێنە (PNG) بە بەکارهێنانی مۆدێرنی وێنەکێشانی لۆکاڵی Canvas
 function downloadAsImage() {
     const name = document.getElementById('patient-name').value || "Unknown Patient";
     const age = document.getElementById('patient-age').value;
     const weight = document.getElementById('patient-weight').value;
     const gender = document.getElementById('patient-gender').value;
     
-    // دروستکردنی کەنڤاسێکی داینامیکی بە دیزاینێکی شیک
     const canvas = document.createElement('canvas');
     canvas.width = 600;
     canvas.height = 450;
     const ctx = canvas.getContext('2d');
 
-    // باکگراوندێکی تاریک و پزیشکی مۆدێرن
     ctx.fillStyle = '#0f172a';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // هێڵکاری و ستایل
     ctx.strokeStyle = '#00d4ff';
     ctx.lineWidth = 3;
     ctx.strokeRect(15, 15, canvas.width - 30, canvas.height - 30);
 
-    // نووسینی ناوەکان و دەقەکان
     ctx.fillStyle = '#ffffff';
     ctx.font = 'bold 20px Tahoma';
     ctx.textAlign = 'right';
@@ -639,12 +596,10 @@ function downloadAsImage() {
     ctx.fillText(`Weight / کێش: ${weight} KG`, canvas.width - 40, 190);
     ctx.fillText(`Gender / ڕەگەز: ${gender}`, canvas.width - 40, 230);
 
-    // هێڵی جیاکەرەوە
     ctx.strokeStyle = 'rgba(255,255,255,0.1)';
     ctx.lineWidth = 1;
     ctx.beginPath(); ctx.moveTo(40, 270); ctx.lineTo(canvas.width - 40, 270); ctx.stroke();
 
-    // ئەنجامەکە بە گەورەیی و ڕەنگی سووری گەشاوە
     ctx.fillStyle = '#ef4444';
     ctx.font = 'bold 32px Tahoma';
     ctx.fillText(`Total TBSA: ${globalTBSA.toFixed(1)}%`, canvas.width - 40, 330);
@@ -653,7 +608,6 @@ function downloadAsImage() {
     ctx.font = '14px Tahoma';
     ctx.fillText('✔️ فۆرمی فەرمی جێگیرکراو بە لۆجیکی Lund-Browder', canvas.width - 40, 390);
 
-    // دابەزاندنی کەنڤاسەکە وەک وێنەی ڕاستەقینە
     const imgURL = canvas.toDataURL("image/png");
     const link = document.createElement("a");
     link.href = imgURL;
@@ -661,22 +615,20 @@ function downloadAsImage() {
     link.click();
 }
 
-// لودکردنی سەرەتایی ئەپەکە
 document.addEventListener("DOMContentLoaded", () => {
     initFinerApp();
-    document.getElementById('patient-age').addEventListener('change', initFinerApp);
+    const patAge = document.getElementById('patient-age');
+    if(patAge) patAge.addEventListener('change', initFinerApp);
 });
-// 🔑 کلیلە گشتییەکەی گووگڵ جێمەنی بۆ تەواوی مۆدیۆلەکانی ئەپی MedByte
+
+// ==========================================================================
+// 🔑 کلیلە گشتییەکەی گووگڵ جێمەنی (تەنها لێرە دەخوێندرێتەوە بۆ هەموو ئەپەکان)
+// ==========================================================================
+const MEDBYTE_GLOBAL_GEMINI_KEY = window.env?.GEMINI_KEY || "AI_KEY_PLACEHOLDER";
 
 // ==========================================================================
 // 💊 لۆجیکی نوێکراوەی Pill Wizard & Multi-Language Clinical Prompt
 // ==========================================================================
-
-// ==========================================================================
-// 💊 لۆجیکی فەرمی Pill Wizard بە کلیلە نوێیەکەوە
-// ==========================================================================
-
-const MEDBYTE_GLOBAL_GEMINI_KEY = window.env?.GEMINI_KEY || "AI_KEY_PLACEHOLDER";
 let wizardRole = 'patient'; 
 let wizardInputMethod = 'text';
 let wizardBase64Image = '';
@@ -692,7 +644,6 @@ function selectWizardRole(role) {
 function selectWizardInput(method) {
     wizardInputMethod = method;
     document.getElementById('step-input-method').style.display = 'none';
-    
     if (method === 'camera') {
         document.getElementById('step-media-input').style.display = 'block';
     } else {
@@ -706,11 +657,9 @@ function goBackToStep(stepId) {
     document.getElementById('step-input-method').style.display = 'none';
     document.getElementById('step-media-input').style.display = 'none';
     document.getElementById('step-text-input').style.display = 'none';
-    
     document.getElementById(stepId).style.display = 'block';
 }
 
-// 🛠️ چاککردنی تەواوی دوگمەی گەڕانەوەی سەرەکی فۆرمەکە بۆ گەڕانەوە بۆ مێنۆ
 function resetPillWizard() {
     stopLiveCamera();
     wizardBase64Image = '';
@@ -723,16 +672,12 @@ function resetPillWizard() {
     document.getElementById('wizard-bento-results').style.display = 'none';
     document.getElementById('wizard-placeholder').style.display = 'block';
     
-    // شاردنەوەی لاپەڕەی ئەپەکە و نیشاندانی لاپەڕەی سەرەکی
     document.getElementById('ai-pill-app').style.display = 'none';
     const mainHome = document.getElementById('main-homepage');
-    if (mainHome) {
-        mainHome.style.display = 'block';
-    }
+    if (mainHome) mainHome.style.display = 'block';
     goBackToStep('step-role');
 }
 
-// ❌ فەنکشنی سڕینەوەی وێنە
 function clearCapturedPhoto() {
     wizardBase64Image = '';
     document.getElementById('pill-captured-image').src = '';
@@ -740,7 +685,6 @@ function clearCapturedPhoto() {
     document.getElementById('pill-file-hidden').value = '';
 }
 
-// کامێرای زیندوو
 async function startLiveCamera() {
     document.getElementById('camera-preview-container').style.display = 'block';
     document.getElementById('pill-preview-box').style.display = 'none';
@@ -789,7 +733,6 @@ function handleWizardImage(event) {
     reader.readAsDataURL(file);
 }
 
-// ١. ناردنی داواکاری سەرەکی بۆ Gemini API
 async function sendPillWizardToAI() {
     const textInput = document.getElementById('wizard-pill-name-input').value.trim();
     if (wizardInputMethod === 'text' && !textInput) {
@@ -835,7 +778,8 @@ async function sendPillWizardToAI() {
         parts.push({ inlineData: { mimeType: mimeType, data: base64Data } });
     }
 
-    const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${WIZARD_GEMINI_KEY}`;
+    // 🌟 ڕاستکرایەوە بۆ بەکارهێنانی کلیلە گشتییەکە
+    const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${MEDBYTE_GLOBAL_GEMINI_KEY}`;
 
     try {
         const response = await fetch(ENDPOINT, {
@@ -882,7 +826,6 @@ async function sendPillWizardToAI() {
     }
 }
 
-// ٢. پشکنینی کارلێکی دەرمانی دووەم
 async function checkSecondaryInteractions() {
     const secondaryDrugs = document.getElementById('wizard-secondary-drugs').value.trim();
     if (!secondaryDrugs) {
@@ -897,7 +840,8 @@ async function checkSecondaryInteractions() {
     Current view mode is "${wizardRole}". If patient, explain simply in Kurdish. If clinical, provide a professional analysis using both Kurdish and English medical terms side-by-side.
     `;
 
-    const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${WIZARD_GEMINI_KEY}`;
+    // 🌟 ڕاستکرایەوە بۆ بەکارهێنانی کلیلە گشتییەکە
+    const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${MEDBYTE_GLOBAL_GEMINI_KEY}`;
 
     try {
         const response = await fetch(ENDPOINT, {
@@ -910,28 +854,23 @@ async function checkSecondaryInteractions() {
 
         document.getElementById('w-interactions').innerHTML = `<strong>⚠️ ئەنجامی کارلێکی تێکەڵە:</strong><br>${resultText}`;
         document.getElementById('w-interact-card').classList.add('red-neon-alert');
-        
         document.getElementById('wizard-loading').style.display = 'none';
     } catch (err) {
         console.error(err);
         document.getElementById('wizard-loading').style.display = 'none';
     }
 }
-// ==========================================================================
-// 📝 لۆجیکی نایابی AI Rx Decoder (خوێندنەوەی خەتی پزیشک)
-// ==========================================================================
 
-const MEDBYTE_GLOBAL_GEMINI_KEY = window.env?.GEMINI_KEY || "AI_KEY_PLACEHOLDER";
+// ==========================================================================
+// 📝 لۆجیکی AI Rx Decoder (خوێندنەوەی خەتی پزیشک)
+// ==========================================================================
 let rxBase64Image = '';
 let rxLocalStream = null;
 
 function selectRxInput(method) {
     document.getElementById('rx-step-input-method').style.display = 'none';
     document.getElementById('rx-step-media').style.display = 'block';
-    
-    if (method === 'camera') {
-        startRxLiveCamera();
-    }
+    if (method === 'camera') startRxLiveCamera();
 }
 
 function goBackToRxStep(stepId) {
@@ -941,7 +880,6 @@ function goBackToRxStep(stepId) {
     document.getElementById(stepId).style.display = 'block';
 }
 
-// ڕێستکردنی گشتی و گەڕانەوە بۆ مێنۆی سەرەکی MedByte
 function resetRxWizard() {
     stopRxLiveCamera();
     rxBase64Image = '';
@@ -954,11 +892,9 @@ function resetRxWizard() {
     document.getElementById('ai-rx-app').style.display = 'none';
     const mainHome = document.getElementById('main-homepage');
     if (mainHome) mainHome.style.display = 'block';
-    
     goBackToRxStep('rx-step-input-method');
 }
 
-// سڕینەوەی وێنە
 function clearRxPhoto() {
     rxBase64Image = '';
     document.getElementById('rx-captured-image').src = '';
@@ -966,7 +902,6 @@ function clearRxPhoto() {
     document.getElementById('rx-file-hidden').value = '';
 }
 
-// کامێرا
 async function startRxLiveCamera() {
     document.getElementById('rx-camera-container').style.display = 'block';
     document.getElementById('rx-preview-box').style.display = 'none';
@@ -1015,7 +950,6 @@ function handleRxImage(event) {
     reader.readAsDataURL(file);
 }
 
-// ناردنی وێنەی ڕەچەتە بۆ لێکدانەوە بە زمانی کوردی و ئینگلیزی پێکەوە
 async function sendRxToAI() {
     if (!rxBase64Image) {
         showAlert('تکایە سەرەتا وێنەی ڕەچەتەکە دابنێ!');
@@ -1042,7 +976,8 @@ async function sendRxToAI() {
     const base64Data = rxBase64Image.split(',')[1];
     const mimeType = rxBase64Image.split(';')[0].split(':')[1];
 
-    const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${RX_GEMINI_KEY}`;
+    // 🌟 ڕاستکرایەوە بۆ بەکارهێنانی کلیلە گشتییەکە
+    const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${MEDBYTE_GLOBAL_GEMINI_KEY}`;
 
     try {
         const response = await fetch(ENDPOINT, {
@@ -1066,7 +1001,6 @@ async function sendRxToAI() {
         document.getElementById('rx-medications-list').innerHTML = resObj.medications;
         document.getElementById('rx-diagnosis').innerText = resObj.diagnosis;
         document.getElementById('rx-notes').innerText = resObj.notes;
-
         document.getElementById('rx-loading').style.display = 'none';
         document.getElementById('rx-bento-results').style.display = 'grid';
 
@@ -1076,11 +1010,10 @@ async function sendRxToAI() {
         showAlert('هەڵەیەک ڕوویدا لە کاتی خوێندنەوەی وێنەکەدا.');
     }
 }
-// ==========================================================================
-// 🧪 لۆجیکی فەرمی و هەنگاو بە هەنگاوی AI Lab Analyzer لەگەڵ Modal Box
-// ==========================================================================
 
-const MEDBYTE_GLOBAL_GEMINI_KEY = window.env?.GEMINI_KEY || "AI_KEY_PLACEHOLDER";
+// ==========================================================================
+// 🧪 AI Lab Analyzer
+// ==========================================================================
 let labBase64Image = '';
 let labLocalStream = null;
 
@@ -1088,7 +1021,6 @@ function goToLabStep(stepId) {
     document.getElementById('lab-step-intro').style.display = 'none';
     document.getElementById('lab-step-demographics').style.display = 'none';
     document.getElementById('lab-step-media').style.display = 'none';
-    
     document.getElementById(stepId).style.display = 'block';
 }
 
@@ -1101,7 +1033,6 @@ function validateLabDemographics() {
     goToLabStep('lab-step-media');
 }
 
-// داخستنی بۆکسی ئەنجامەکان
 function closeLabModal() {
     document.getElementById('lab-result-modal').style.display = 'none';
 }
@@ -1119,7 +1050,6 @@ function resetLabWizard() {
     document.getElementById('ai-lab-app').style.display = 'none';
     const mainHome = document.getElementById('main-homepage');
     if (mainHome) mainHome.style.display = 'block';
-    
     goToLabStep('lab-step-intro');
 }
 
@@ -1130,7 +1060,6 @@ function clearLabPhoto() {
     document.getElementById('lab-file-hidden').value = '';
 }
 
-// کامێرا
 async function startLabLiveCamera() {
     document.getElementById('lab-camera-container').style.display = 'block';
     document.getElementById('lab-preview-box').style.display = 'none';
@@ -1179,7 +1108,6 @@ function handleLabImage(event) {
     reader.readAsDataURL(file);
 }
 
-// ناردنی داتا بۆ لێکدانەوە
 async function sendLabToAI() {
     if (!labBase64Image) {
         showAlert('تکایە وێنەی فەحسەکە دابنێ یان وێنەیەک بگرە!');
@@ -1188,7 +1116,6 @@ async function sendLabToAI() {
 
     const age = document.getElementById('lab-patient-age').value;
     const gender = document.querySelector('input[name="lab-gender"]:checked').value;
-
     document.getElementById('lab-loading').style.display = 'block';
 
     const promptText = `
@@ -1211,7 +1138,8 @@ async function sendLabToAI() {
     const base64Data = labBase64Image.split(',')[1];
     const mimeType = labBase64Image.split(';')[0].split(':')[1];
 
-    const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${LAB_GEMINI_KEY}`;
+    // 🌟 ڕاستکرایەوە بۆ بەکارهێنانی کلیلە گشتییەکە
+    const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${MEDBYTE_GLOBAL_GEMINI_KEY}`;
 
     try {
         const response = await fetch(ENDPOINT, {
@@ -1235,10 +1163,7 @@ async function sendLabToAI() {
         document.getElementById('lab-abnormal-list').innerHTML = resObj.abnormalValues;
         document.getElementById('lab-interpretation').innerText = resObj.interpretation;
         document.getElementById('lab-nursing-notes').innerText = resObj.nursingNotes;
-
         document.getElementById('lab-loading').style.display = 'none';
-        
-        // ✨ لێرەدا بۆکسی پۆپ-ئەپەکە چالاک دەبێت پاش لۆدین بە سەرکەوتوویی
         document.getElementById('lab-result-modal').style.display = 'flex';
 
     } catch (err) {
@@ -1247,11 +1172,10 @@ async function sendLabToAI() {
         showAlert('هەڵەیەک ڕوویدا لە کاتی خوێندنەوەی فەحسەکەدا.');
     }
 }
-// ==========================================================================
-// 📸 لۆجیکی فەرمی OCR Text Extractor (دەرهێنانی دەق بەبێ دەستکاری)
-// ==========================================================================
 
-const MEDBYTE_GLOBAL_GEMINI_KEY = window.env?.GEMINI_KEY || "AI_KEY_PLACEHOLDER";
+// ==========================================================================
+// 📸 OCR Text Extractor (دەرهێنانی دەق بەبێ دەستکاری)
+// ==========================================================================
 let ocrBase64Image = '';
 let ocrLocalStream = null;
 
@@ -1265,7 +1189,6 @@ function closeOcrModal() {
     document.getElementById('ocr-result-modal').style.display = 'none';
 }
 
-// فەنکشنی دووبارەکردنەوە (داخستنی مۆدال و گەڕانەوە بۆ بەشی وێنەگرتن)
 function retakeOcrProcess() {
     closeOcrModal();
     clearOcrPhoto();
@@ -1284,7 +1207,6 @@ function resetOcrWizard() {
     document.getElementById('ocr-extractor-app').style.display = 'none';
     const mainHome = document.getElementById('main-homepage');
     if (mainHome) mainHome.style.display = 'block';
-    
     goToOcrStep('ocr-step-intro');
 }
 
@@ -1295,7 +1217,6 @@ function clearOcrPhoto() {
     document.getElementById('ocr-file-hidden').value = '';
 }
 
-// لۆجیکی کامێرا
 async function startOcrLiveCamera() {
     document.getElementById('ocr-camera-container').style.display = 'block';
     document.getElementById('ocr-preview-box').style.display = 'none';
@@ -1344,7 +1265,6 @@ function handleOcrImage(event) {
     reader.readAsDataURL(file);
 }
 
-// ناردنی وێنەکە تەنها بۆ دەرهێنانی دەق بەبێ دەستکاری
 async function sendOcrToAI() {
     if (!ocrBase64Image) {
         showAlert('تکایە وێنەیەک دیاری بکە!');
@@ -1353,7 +1273,6 @@ async function sendOcrToAI() {
 
     document.getElementById('ocr-loading').style.display = 'block';
 
-    // پرۆمپتەکە زۆر ڕوونە: تەنها تێکستەکە وەک خۆی بەبێ زیادکردن و کەمکردن یاخود شیکردنەوە
     const promptText = `
     You are a precise Optical Character Recognition (OCR) engine.
     Extract ALL text from this image exactly as it is written. 
@@ -1364,7 +1283,8 @@ async function sendOcrToAI() {
     const base64Data = ocrBase64Image.split(',')[1];
     const mimeType = ocrBase64Image.split(';')[0].split(':')[1];
 
-    const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${OCR_GEMINI_KEY}`;
+    // 🌟 ڕاستکرایەوە بۆ بەکارهێنانی کلیلە گشتییەکە
+    const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${MEDBYTE_GLOBAL_GEMINI_KEY}`;
 
     try {
         const response = await fetch(ENDPOINT, {
@@ -1383,30 +1303,25 @@ async function sendOcrToAI() {
         const data = await response.json();
         const rawExtractedText = data.candidates[0].content.parts[0].text;
 
-        // خستنە ناو بۆکسی تێکستەکە
         document.getElementById('ocr-extracted-text-area').value = rawExtractedText;
         document.getElementById('ocr-loading').style.display = 'none';
-        
-        // پیشاندانی بۆکسی پۆپ ئەپ (Modal)
         document.getElementById('ocr-result-modal').style.display = 'flex';
 
     } catch (err) {
         console.error(err);
         document.getElementById('ocr-loading').style.display = 'none';
-        showAlert('هەڵەیەک ڕوویدا لە کاتی دەرهێنانی دەقەکەدا.');
+        showAlert('هەڵەیەک ڕوویدا لە کاتی ڕۆشنکردنەوەی تێکستەکەدا.');
     }
 }
 
-// فەنکشنی کۆپیکردنی هەموو دەقەکە بە یەک کلیک
 function copyOcrText() {
     const textArea = document.getElementById('ocr-extracted-text-area');
     textArea.select();
-    textArea.setSelectionRange(0, 99999); // بۆ مۆبایلەکان
+    textArea.setSelectionRange(0, 99999);
     navigator.clipboard.writeText(textArea.value);
     showAlert('✓ تەواوی دەقەکە کۆپی کرا!');
 }
 
-// ✨ فەنکشنی بڕین و کۆپیکردنی تەنها ئەو بەشەی بەکارهێنەر دیاری کردووە (Select)
 function trimOcrSelectedText() {
     const textArea = document.getElementById('ocr-extracted-text-area');
     const start = textArea.selectionStart;
